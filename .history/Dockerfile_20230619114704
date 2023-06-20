@@ -1,0 +1,8 @@
+FROM mongo:6.0
+
+# Copy the MongoDB configuration file
+COPY mongod.conf /etc/mongod.conf
+
+# Set the command to start MongoDB with authentication
+CMD ["mongod", "--auth"]
+

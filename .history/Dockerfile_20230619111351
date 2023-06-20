@@ -1,0 +1,15 @@
+# Use the desired MongoDB version as the base image
+FROM mongo:0.6
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Copy MongoDB configuration file if it exists
+COPY mongo.conf /etc/mongo.conf || true
+
+# Expose the MongoDB port
+EXPOSE 27017
+
+# Start MongoDB service
+CMD ["mongod", "--config", "/etc/mongo.conf"]
+

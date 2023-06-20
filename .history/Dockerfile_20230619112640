@@ -1,0 +1,19 @@
+FROM mongo:6.0
+
+# Set the working directory to /data/db
+WORKDIR /data/db
+
+# Expose the port that MongoDB listens on
+EXPOSE 27017
+
+# Start the MongoDB server
+CMD mongod
+
+# Add a user named "admin" with the password "password"
+RUN db.createUser({
+  user: "admin",
+  pwd: "password",
+  roles: [
+    { role: "readWrite", db: "admin" }
+  ]
+})

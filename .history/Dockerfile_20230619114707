@@ -1,0 +1,19 @@
+FROM mongo:6.0
+
+# Copy the MongoDB configuration file
+COPY mongod.conf /etc/mongod.conf
+
+# Set the command to start MongoDB with authentication
+CMD ["mongod", "--auth"]
+
+# Install MongoDB client tools
+RUN apt-get update && apt-get install -y mongodb-clients
+
+# Set the working directory
+WORKDIR /app
+
+# Copy your application files to the container
+COPY . .
+
+# Start the MongoDB shell
+CMD mongo

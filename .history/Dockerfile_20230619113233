@@ -1,0 +1,16 @@
+FROM mongo:6.0
+
+# Set the working directory to /data/db
+WORKDIR /data/db
+
+# Expose the port that MongoDB listens on
+EXPOSE 27017
+
+# Install MongoDB client tools
+#RUN apt-get update && apt-get install -y mongo-tools
+
+# Start the MongoDB server
+CMD ["mongod"]
+
+# Add a user named "admin" with the password "password"
+RUN mongo admin --eval 'db.createUser({user: "admin", pwd: "password", roles: ["readWrite"]})'
